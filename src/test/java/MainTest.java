@@ -13,13 +13,14 @@ import java.lang.reflect.Field;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @ExtendWith(ResultAnalyzer.class)
 public class MainTest {
 
     private Circle circle;
-    private Cylinder cylinder;
+    private Circle cylinder;
     private Rectangle rectangle;
     private Cuboid cuboid;
     private Employee employee;
@@ -32,7 +33,7 @@ public class MainTest {
     @BeforeEach
     void setUp() {
         circle = new Circle(2);
-        cylinder = new Cylinder(2,2);
+        cylinder = new Circle(2);
         rectangle = new Rectangle(1,2);
         cuboid = new Cuboid(1, 2, 3);
         employee = new Employee(1, "Jane Doe", 20000);
@@ -78,7 +79,7 @@ public class MainTest {
     @DisplayName("getVolume methodu doğru çalışıyor mu?")
     @Test
     public void testGetVolume() throws NoSuchFieldException {
-        assertTrue(String.format("%.2f", cylinder.getVolume()).contains("25"));
+        assertTrue(String.format("%.2f", ((Cylinder) cylinder).getVolume()).contains("25"));
     }
 
     @DisplayName("Rectangle sınıf değişkenleri doğru access modifier a sahip mi ?")
